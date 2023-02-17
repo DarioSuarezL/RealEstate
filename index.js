@@ -9,10 +9,14 @@ const app = express();
 //conexión a la base de datos
 try {
     await db.authenticate();
+    db.sync();
     console.log('Connected to the database');
 } catch (error) {
     console.log(error);
 }
+
+//habilitar lectura de datos de formulario
+app.use( express.urlencoded({ extended: true }) )
 
 //habilitar pug
 app.set('view engine','pug');
